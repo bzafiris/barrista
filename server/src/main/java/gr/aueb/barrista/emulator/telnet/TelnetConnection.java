@@ -64,9 +64,9 @@ public class TelnetConnection {
 		return true;
 	}
 
+	
 	public boolean command(TelnetCommand telnetCommand) {
 
-		
 		if (!connect()) {
 			return false;
 		}
