@@ -1,6 +1,8 @@
 package gr.aueb.barrista.emulator.telnet.command;
 
-public class GeoFix implements TelnetCommand {
+import gr.aueb.barrista.dto.GeoFixDto;
+
+public class GeoFixCommand implements TelnetCommand {
 
 	public static final String GEO_FIX = "geo fix";
 	
@@ -8,12 +10,16 @@ public class GeoFix implements TelnetCommand {
 	private double longitude;
 	
 	
-	public GeoFix(double latitude, double longitude) {
+	public GeoFixCommand(double latitude, double longitude) {
 		super();
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
 	
+	public GeoFixCommand(GeoFixDto geofix) {
+		latitude = geofix.latitude;
+		longitude = geofix.longitude;
+	}
 	
 	@Override
 	public String toString() {

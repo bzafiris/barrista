@@ -48,7 +48,7 @@ public class TelnetConnection {
 			socketReader = new BufferedReader(new InputStreamReader(in));
 
 			command(new Auth(emulatorConsoleAuthToken));
-			
+
 			// issue auth command
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,32 +64,32 @@ public class TelnetConnection {
 		return true;
 	}
 
-	
+
 	public boolean command(TelnetCommand telnetCommand) {
 
 		if (!connect()) {
 			return false;
 		}
-		
-		System.out.println("Executing: " + telnetCommand);
-		
+
+		System.out.println(port + "> Executing: " + telnetCommand);
+
 		try {
 			socketWriter.write(telnetCommand.toString());
 			socketWriter.flush();
-			
+
 			for (String line = socketReader.readLine(); line != null; line = socketReader.readLine()) {
 				System.out.println("Response: " + line);
 				if (line.trim().equals("OK")){
 					return true;
 				}
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
-		
-		
+
+
 		return true;
 	}
 
